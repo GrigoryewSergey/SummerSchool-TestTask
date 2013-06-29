@@ -13,6 +13,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{CEA146EA-F46F-4A70-A26C-E9668A91A6F6}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\CleanCompileFiles.bat = Scripts\CleanCompileFiles.bat
+		Scripts\DebugDeploy.bat = Scripts\DebugDeploy.bat
+		Scripts\LibraryDeploy.bat = Scripts\LibraryDeploy.bat
+		Scripts\ReleaseDeploy.bat = Scripts\ReleaseDeploy.bat
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

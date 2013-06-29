@@ -1,1 +1,6 @@
 Source code for ByndyuSoft`s summer school
+
+SummerSchool-TestTask
+ - TestTask.Executable
+ - TestTask.MathLibrary
+ - TestTask.UnitTest
