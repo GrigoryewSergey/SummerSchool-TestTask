@@ -19,32 +19,32 @@ namespace TestTask.Executable
 		/// <summary>
 		/// Список имен сборок, которые находятся в папке и реализуют заданные интерфейс
 		/// </summary>
-		List<string> pluginsList;
+		readonly List<string> pluginsList;
 
 		/// <summary>
 		/// Имя интерфейса, который должен реализовавыть класс из сборки
 		/// </summary>
-		private string interfaceName = "IComputable";
+		private const string interfaceName = "IComputable";
 
 		/// <summary>
 		/// Имя метода, который должен содержаться в классе, реализующем интерфейс interfaceName
 		/// </summary>
-		private string methodName = "Compute";
+		private const string methodName = "Compute";
 
 		/// <summary>
 		/// Комадна пользователя для выхода
 		/// </summary>
-		private string exitCommand = "exit";
+		private const string exitCommand = "exit";
 
 		/// <summary>
 		/// Объект, реализующий необходимый интерфейс
 		/// </summary>
-		object implementsObject = null;
+		object implementsObject;
 
 		/// <summary>
 		/// Метод, который содержит каждый класс, реализующий интерфейс
 		/// </summary>
-		MethodInfo implementsMethod = null;
+		MethodInfo implementsMethod;
 
 		/// <summary>
 		/// Конструктор класса
@@ -72,8 +72,7 @@ namespace TestTask.Executable
 		/// </summary>
 		public void ProcessUserSession()
 		{
-			string expression = "";
-			double result = double.NaN;
+			var expression = "";
 
 			do
 			{
@@ -81,11 +80,11 @@ namespace TestTask.Executable
 				{
 					expression = Console.ReadLine();
 
-					if(expression != exitCommand)
+					if (expression != exitCommand)
 					{
-						result = Compute(expression);
+						var result = Compute(expression);
 
-						if(!double.IsNaN(result))
+						if (!double.IsNaN(result))
 						{
 							Console.WriteLine("{0} equal {1}", expression, result);
 						}
@@ -118,19 +117,19 @@ namespace TestTask.Executable
 		/// <returns>число подходящих сборок</returns>
 		public int LoadPlugins()
 		{
-			string[] pluginsAssemblyName = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.dll");
+			var pluginsAssemblyName = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.dll");
 
-			foreach(string assemblyName in pluginsAssemblyName)
+			foreach(var assemblyName in pluginsAssemblyName)
 			{
 				try
 				{
-					Assembly assembly = Assembly.Load(Path.GetFileNameWithoutExtension(assemblyName));
+					var assembly = Assembly.Load(Path.GetFileNameWithoutExtension(assemblyName));
 
 					if(assembly != null)
 					{
-						Type[] assemblysTypes = assembly.GetTypes();
+						var assemblysTypes = assembly.GetTypes();
 
-						foreach(Type type in assemblysTypes)
+						foreach(var type in assemblysTypes)
 						{
 							if(type.GetInterface(interfaceName, true) != null)
 							{

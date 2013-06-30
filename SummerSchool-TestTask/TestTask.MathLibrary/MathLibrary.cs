@@ -9,7 +9,6 @@
 
 using System;
 
-
 namespace TestTask.MathLibraryNamespace
 {
 	public class MathLibrary : IComputable
@@ -20,7 +19,7 @@ namespace TestTask.MathLibraryNamespace
 		/// <param name="a">первый аргумент</param>
 		/// <param name="b">второй аргумент</param>
 		/// <returns>результат вычисления</returns>
-		private double Summ(double a, double b)
+		private static double Summ(double a, double b)
 		{
 			return a + b;
 		}
@@ -32,7 +31,7 @@ namespace TestTask.MathLibraryNamespace
 		/// <param name="a">первый аргумент</param>
 		/// <param name="b">второй аргумент</param>
 		/// <returns>результат вычисления</returns>
-		private double Difference(double a, double b)
+		private static double Difference(double a, double b)
 		{
 			return a - b;
 		}
@@ -44,7 +43,7 @@ namespace TestTask.MathLibraryNamespace
 		/// <param name="a">первый аргумент</param>
 		/// <param name="b">второй аргумент</param>
 		/// <returns>результат вычисления</returns>
-		private double Multiplication(double a, double b)
+		private static double Multiplication(double a, double b)
 		{
 			return a * b;
 		}
@@ -56,16 +55,14 @@ namespace TestTask.MathLibraryNamespace
 		/// <param name="a">первый аргумент</param>
 		/// <param name="b">второй аргумент</param>
 		/// <returns>результат вычисления</returns>
-		private double Division(double a, double b)
+		private static double Division(double a, double b)
 		{
-			if(b != 0)
+			if(Math.Abs(b - 0.0) > double.Epsilon)
 			{
 				return a / b;
 			}
-			else
-			{
-				throw new DivideByZeroException();
-			}
+
+			throw new DivideByZeroException();
 		}
 
 
@@ -74,9 +71,9 @@ namespace TestTask.MathLibraryNamespace
 		/// </summary>
 		/// <param name="a">аргумент</param>		
 		/// <returns>результат вычисления</returns>
-		private double Factorial(double a)
+		private static double Factorial(double a)
 		{
-			return (a == 1) ? 1 : a * Factorial(a - 1);
+			return (Math.Abs(a - 1.0) < double.Epsilon) ? 1 : a * Factorial(a - 1);
 		}
 
 
@@ -85,16 +82,14 @@ namespace TestTask.MathLibraryNamespace
 		/// </summary>
 		/// <param name="a">аргумент</param>		
 		/// <returns>результат вычисления</returns>
-		private double Sqrt(double a)
+		private static double Sqrt(double a)
 		{
 			if(a >= 0)
 			{
 				return Math.Sqrt(a);
 			}
-			else
-			{
-				throw new ArgumentException();
-			}
+
+			throw new ArgumentException();
 		}
 
 

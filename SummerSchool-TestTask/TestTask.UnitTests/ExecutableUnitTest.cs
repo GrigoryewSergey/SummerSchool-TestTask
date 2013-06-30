@@ -8,7 +8,6 @@
 
 using TestTask.Executable;
 using NUnit.Framework;
-using System;
 using System.Reflection;
 
 
@@ -17,12 +16,12 @@ namespace TestTask.UnitTests
 	[TestFixture]
 	class ExecutableUnitTests
 	{
-		static Program program = new Program();
+		static readonly Program Program = new Program();
 
 		public ExecutableUnitTests()
 		{
-			program.LoadPlugins();
-			program.SelectPlugin(0);
+			Program.LoadPlugins();
+			Program.SelectPlugin(0);
 		}
 
 
@@ -30,7 +29,7 @@ namespace TestTask.UnitTests
 		[Category("Executable")]
 		static public void LoadPluginTest()
 		{
-			Program prog = new Program();
+			var prog = new Program();
 			Assert.AreEqual(prog.LoadPlugins(), 1);
 		}
 
@@ -39,7 +38,7 @@ namespace TestTask.UnitTests
 		[Category("Executable")]
 		static public void SelectPluginTest()
 		{
-			Assert.AreEqual(program.SelectPlugin(0), true);
+			Assert.AreEqual(Program.SelectPlugin(0), true);
 		}
 
 
@@ -49,7 +48,7 @@ namespace TestTask.UnitTests
 		[TestCase("summ 22,2 11,1", 33.3, TestName = "[Executable] summ 22,2 11,1")]
 		static public void SummTest(string expression, double result)
 		{			
-			Assert.AreEqual(program.Compute(expression), result);
+			Assert.AreEqual(Program.Compute(expression), result);
 		}
 
 
@@ -59,7 +58,7 @@ namespace TestTask.UnitTests
 		[TestCase("difference 22,2 11,1", 11.1, TestName = "[Executable] difference 22,2 11,1")]
 		static public void DifferenceTest(string expression, double result)
 		{
-			Assert.AreEqual(program.Compute(expression), result);
+			Assert.AreEqual(Program.Compute(expression), result);
 		}
 
 
@@ -69,7 +68,7 @@ namespace TestTask.UnitTests
 		[TestCase("multiplication 0,2 0,3", 0.06, TestName = "[Executable] multiplication 0,2 0,3")]
 		static public void MultiplicationTest(string expression, double result)
 		{
-			Assert.AreEqual(program.Compute(expression), result);
+			Assert.AreEqual(Program.Compute(expression), result);
 		}
 
 		
@@ -80,7 +79,7 @@ namespace TestTask.UnitTests
 		[TestCase("division 15 0", 0, TestName = "[Executable] division 15 0", ExpectedException = typeof(TargetInvocationException))]
 		static public void DivisionTest(string expression, double result)
 		{
-			Assert.AreEqual(program.Compute(expression), result);
+			Assert.AreEqual(Program.Compute(expression), result);
 		}
 
 
@@ -90,7 +89,7 @@ namespace TestTask.UnitTests
 		[TestCase("factorial 5", 120, TestName = "[Executable] factorial 5")]
 		static public void FactorialTest(string expression, double result)
 		{
-			Assert.AreEqual(program.Compute(expression), result);
+			Assert.AreEqual(Program.Compute(expression), result);
 		}
 
 
@@ -101,7 +100,7 @@ namespace TestTask.UnitTests
 		[TestCase("sqrt -1", -1, TestName = "[Executable] sqrt -1", ExpectedException = typeof(TargetInvocationException))]
 		static public void SqrtTest(string expression, double result)
 		{
-			Assert.AreEqual(program.Compute(expression), result);
+			Assert.AreEqual(Program.Compute(expression), result);
 		}
 	}
 }

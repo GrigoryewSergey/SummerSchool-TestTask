@@ -12,9 +12,9 @@ namespace TestTask.Executable
 {
 	class EntryPoint
 	{
-		static void Main(string[] args)
+		static void Main()
 		{
-			Program program = new Program();
+			var program = new Program();
 
 			// Загружаем сборки
 			program.LoadPlugins();
@@ -27,7 +27,7 @@ namespace TestTask.Executable
 				// Предлагаем пользователю выбор конткретной сборки
 				Console.Write("Номер плагина: ");
 
-				int pluginNumber = int.Parse(Console.ReadLine());
+				var pluginNumber = int.Parse(Console.ReadLine());
 
 				// Если сборка была выбрана
 				if(program.SelectPlugin(pluginNumber))

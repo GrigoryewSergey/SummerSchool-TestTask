@@ -6,18 +6,17 @@
 */
 
 
-using TestTask.MathLibraryNamespace;
+
 using NUnit.Framework;
 using System;
-using System.Reflection;
-
+using TestTask.MathLibraryNamespace;
 
 namespace TestTask.UnitTests
 {
 	[TestFixture]
 	class MathLibraryUnitTests
 	{
-		static MathLibrary mathLibrary = new MathLibrary();
+		static readonly MathLibrary MathLibrary = new MathLibrary();
 
 		[Test]
 		[Category("MathLibrary")]		
@@ -25,7 +24,7 @@ namespace TestTask.UnitTests
 		[TestCase("summ 22,2 11,1", 33.3, TestName = "[MathLibrary] summ 22,2 11,1")]
 		static public void SummTest(string expression, double result)
 		{
-			Assert.AreEqual(mathLibrary.Compute(expression), result);
+			Assert.AreEqual(MathLibrary.Compute(expression), result);
 		}
 
 
@@ -35,7 +34,7 @@ namespace TestTask.UnitTests
 		[TestCase("difference 22,2 11,1", 11.1, TestName = "[MathLibrary] difference 22,2 11,1")]
 		static public void DifferenceTest(string expression, double result)
 		{
-			Assert.AreEqual(mathLibrary.Compute(expression), result);
+			Assert.AreEqual(MathLibrary.Compute(expression), result);
 		}
 
 
@@ -45,7 +44,7 @@ namespace TestTask.UnitTests
 		[TestCase("multiplication 0,2 0,3", 0.06, TestName = "[MathLibrary] multiplication 0,2 0,3")]
 		static public void MultiplicationTest(string expression, double result)
 		{
-			Assert.AreEqual(mathLibrary.Compute(expression), result);
+			Assert.AreEqual(MathLibrary.Compute(expression), result);
 		}
 
 
@@ -56,7 +55,7 @@ namespace TestTask.UnitTests
 		[TestCase("division 15 0", 0, TestName = "[MathLibrary] division 15 0", ExpectedException = typeof(DivideByZeroException))]
 		static public void DivisionTest(string expression, double result)
 		{
-			Assert.AreEqual(mathLibrary.Compute(expression), result);
+			Assert.AreEqual(MathLibrary.Compute(expression), result);
 		}
 
 
@@ -66,7 +65,7 @@ namespace TestTask.UnitTests
 		[TestCase("factorial 5", 120, TestName = "[MathLibrary] factorial 5")]
 		static public void FactorialTest(string expression, double result)
 		{
-			Assert.AreEqual(mathLibrary.Compute(expression), result);
+			Assert.AreEqual(MathLibrary.Compute(expression), result);
 		}
 
 
@@ -77,7 +76,7 @@ namespace TestTask.UnitTests
 		[TestCase("sqrt -1", -1, TestName = "[MathLibrary] sqrt -1", ExpectedException = typeof(ArgumentException))]
 		static public void SqrtTest(string expression, double result)
 		{
-			Assert.AreEqual(mathLibrary.Compute(expression), result);
+			Assert.AreEqual(MathLibrary.Compute(expression), result);
 		}
 
 
@@ -85,7 +84,7 @@ namespace TestTask.UnitTests
 		[Category("MathLibrary")]
 		static public void NotValidCommandTest()
 		{
-			Assert.AreEqual(mathLibrary.Compute("test"), double.NaN);
+			Assert.AreEqual(MathLibrary.Compute("test"), double.NaN);
 		}				
 	}
 }
