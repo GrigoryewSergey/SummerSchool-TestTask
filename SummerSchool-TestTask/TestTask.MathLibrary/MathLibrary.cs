@@ -8,6 +8,7 @@
 
 
 using System;
+using System.Globalization;
 
 namespace TestTask.MathLibraryNamespace
 {
@@ -57,7 +58,7 @@ namespace TestTask.MathLibraryNamespace
 		/// <returns>результат вычисления</returns>
 		private static double Division(double a, double b)
 		{
-			if(Math.Abs(b - 0.0) > double.Epsilon)
+			if(b != 0.0)
 			{
 				return a / b;
 			}
@@ -73,7 +74,7 @@ namespace TestTask.MathLibraryNamespace
 		/// <returns>результат вычисления</returns>
 		private static double Factorial(double a)
 		{
-			return (Math.Abs(a - 1.0) < double.Epsilon) ? 1 : a * Factorial(a - 1);
+			return (a == 1.0) ? 1 : a * Factorial(a - 1);
 		}
 
 
@@ -84,7 +85,7 @@ namespace TestTask.MathLibraryNamespace
 		/// <returns>результат вычисления</returns>
 		private static double Sqrt(double a)
 		{
-			if(a >= 0)
+			if(a >= 0.0)
 			{
 				return Math.Sqrt(a);
 			}
@@ -112,40 +113,52 @@ namespace TestTask.MathLibraryNamespace
 			{
 				case "summ":
 					{
-						return Summ(double.Parse(expressionItems[firstArgumentIndex]),
-							double.Parse(expressionItems[secondArgumentIndex]));
+						double a = double.Parse(expressionItems[firstArgumentIndex], CultureInfo.InvariantCulture);
+						double b = double.Parse(expressionItems[secondArgumentIndex], CultureInfo.InvariantCulture);
+
+						return Summ(a, b);
 					}
 
 				case "difference":
 					{
-						return Difference(double.Parse(expressionItems[firstArgumentIndex]),
-							double.Parse(expressionItems[secondArgumentIndex]));
+						double a = double.Parse(expressionItems[firstArgumentIndex], CultureInfo.InvariantCulture);
+						double b = double.Parse(expressionItems[secondArgumentIndex], CultureInfo.InvariantCulture);
+
+						return Difference(a, b);
 					}
 
 				case "multiplication":
 					{
-						return Multiplication(double.Parse(expressionItems[firstArgumentIndex]),
-							double.Parse(expressionItems[secondArgumentIndex]));
+						double a = double.Parse(expressionItems[firstArgumentIndex], CultureInfo.InvariantCulture);
+						double b = double.Parse(expressionItems[secondArgumentIndex], CultureInfo.InvariantCulture);
+
+						return Multiplication(a, b);
 					}
 
 				case "division":
 					{
-						return Division(double.Parse(expressionItems[firstArgumentIndex]),
-							double.Parse(expressionItems[secondArgumentIndex]));
+						double a = double.Parse(expressionItems[firstArgumentIndex], CultureInfo.InvariantCulture);
+						double b = double.Parse(expressionItems[secondArgumentIndex], CultureInfo.InvariantCulture);
+
+						return Division(a, b);
 					}
 
 				case "factorial":
 					{
-						return Factorial(double.Parse(expressionItems[firstArgumentIndex]));
+						double a = double.Parse(expressionItems[firstArgumentIndex], CultureInfo.InvariantCulture);
+
+						return Factorial(a);
 					}
 
 				case "sqrt":
 					{
-						return Sqrt(double.Parse(expressionItems[firstArgumentIndex]));
+						double a = double.Parse(expressionItems[firstArgumentIndex], CultureInfo.InvariantCulture);
+
+						return Sqrt(a);
 					}
 
 				default:
-					{						
+					{
 						return double.NaN;
 					}
 			}
