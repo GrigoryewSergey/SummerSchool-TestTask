@@ -1,20 +1,12 @@
-﻿/*
- * Интерфейс IComputable
- * 
- * Сергей Григорьев, для ByndyuSoft`s Summer School
- * 2013-06-04
-*/
-
-
-namespace TestTask.MathLibraryNamespace
+﻿namespace TestTask.MathLibraryNamespace
 {
 	/// <summary>
-	/// Интерфейс, который должен реализовывать класс из динамически загружаемой сборки
+	///     Интерфейс, который должен реализовывать класс из динамически загружаемой сборки
 	/// </summary>
 	public interface IComputable
 	{
 		/// <summary>
-		/// Метод, для вычисления выражени
+		///     Метод, для вычисления выражени
 		/// </summary>
 		/// <param name="expression">выражение в виде строки</param>
 		/// <returns>результат вычисления выражения</returns>

@@ -1,42 +1,34 @@
-﻿/*
- * Точка входа приложения
- * С этого метода начинается выполнение приложения
- * 
- * Сергей Григорьев, для ByndyuSoft`s Summer School
- * 2013-06-04
-*/
-
-using System;
-
-namespace TestTask.Executable
+﻿namespace TestTask.Executable
 {
-	class EntryPoint
+	using System;
+
+	static class EntryPoint
 	{
-		static void Main()
+		private static void Main()
 		{
-			var program = new Program();
+			var calculator = new Calculator();
 
-			// Загружаем сборки
-			program.LoadPlugins();
+			calculator.LoadPlugins();
 
-			// Отображаем список подходящих сборок
-			program.DisplayPlugins();
+			calculator.DisplayPlugins();
 
 			try
 			{
-				// Предлагаем пользователю выбор конткретной сборки
 				Console.Write("Номер плагина: ");
 
-				var pluginNumber = int.Parse(Console.ReadLine());
+				var inputString = Console.ReadLine();
 
-				// Если сборка была выбрана
-				if(program.SelectPlugin(pluginNumber))
+				if (inputString != null)
 				{
-					// Обрабатывать команды пользователя
-					program.ProcessUserSession();
+					var pluginNumber = int.Parse(inputString);
+
+					if (calculator.SelectPlugin(pluginNumber))
+					{
+						calculator.ProcessUserSession();
+					}
 				}
 			}
-			catch(Exception e)
+			catch (Exception e)
 			{
 				Console.WriteLine("Плагин выбран не верно\n" + e.Message);
 			}
